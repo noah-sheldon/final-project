@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import currencies from "./currencies"; // Import currency options
+import React, { useState, useEffect } from "react";
+import currencies from "./currencies";
 
 const ForexNews = () => {
+  const apiKey = import.meta.env.VITE_NEWS_APP_API_KEY;
   const [news, setNews] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredNews, setFilteredNews] = useState([]);
-  const [selectedCurrency, setSelectedCurrency] = useState('USD');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
 
   useEffect(() => {
     const fetchForexNews = async () => {
@@ -17,17 +18,17 @@ const ForexNews = () => {
         if (startDate && endDate) {
           apiUrl += `&from=${startDate}&to=${endDate}`;
         }
-        apiUrl += `&language=${selectedLanguage}&sortBy=publishedAt&apiKey=d579b34455104e98899dbe43a7320876`;
+        apiUrl += `&language=${selectedLanguage}&sortBy=publishedAt&apiKey=${apiKey}`;
 
         const response = await fetch(apiUrl);
         if (response.ok) {
           const data = await response.json();
           setNews(data.articles);
         } else {
-          console.error('Failed to fetch Forex news');
+          console.error("Failed to fetch Forex news");
         }
       } catch (error) {
-        console.error('Error fetching Forex news:', error);
+        console.error("Error fetching Forex news:", error);
       }
     };
 
@@ -35,29 +36,29 @@ const ForexNews = () => {
   }, [selectedCurrency, startDate, endDate, selectedLanguage]);
 
   useEffect(() => {
-    const filteredArticles = news.filter(article =>
+    const filteredArticles = news.filter((article) =>
       article.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredNews(filteredArticles);
   }, [searchTerm, news]);
 
-  const handleSearchChange = event => {
+  const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleCurrencyChange = event => {
+  const handleCurrencyChange = (event) => {
     setSelectedCurrency(event.target.value);
   };
 
-  const handleStartDateChange = event => {
+  const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
   };
 
-  const handleEndDateChange = event => {
+  const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
   };
 
-  const handleLanguageChange = event => {
+  const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
   };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import currencies from "./currencies";
+import currencies from "../../data/currencies";
 
 const ForexNews = () => {
   const apiKey = import.meta.env.VITE_NEWS_APP_API_KEY;

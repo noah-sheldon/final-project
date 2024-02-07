@@ -123,6 +123,9 @@ const ForexNews = () => {
               <div className="card-body">
                 <h5 className="card-title">{article.title}</h5>
                 <p className="card-text">{article.description}</p>
+                <p className="card-text">Publish Date:  {article.publishedAt.slice(0, 10)}</p>
+                <p className="card-text">Source:  {article.source.name}</p>
+
                 <a
                   href={article.url}
                   className="btn btn-primary"

@@ -1,0 +1,112 @@
+.currency-converter-container {
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  
+  .currency-converter-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .currency-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .currency-block {
+    display: flex;
+    align-items: center;
+    flex-basis: calc(50% - 5px);
+  }
+  
+  .currency-select,
+  .currency-input {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 100%;
+  }
+  
+  .currency-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat;
+    background-size: 12px;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+  }
+  
+  .currency-input[type="text"] {
+    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .currency-symbol {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 8px;
+  }
+  
+  .date-picker {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .date-picker button {
+    background: none;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .date-picker input {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  /* Add styling for advanced data, print button, etc. */
+  .advanced-data,
+  .print {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .print button {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Responsive design adjustments */
+  @media (max-width: 600px) {
+    .currency-row {
+      flex-direction: column;
+    }
+  
+    .currency-block {
+      margin-bottom: 10px;
+    }
+  
+    .currency-block:last-child {
+      margin-bottom: 0;
+    }
+  }
+  

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from "./components/NoPage/NoPage";
 import Home from "./components/Home/Home";
 import ForexNews from "./components/ForexNews/ForexNews";
+import Historic from "./components/Historic/Historic";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />
-          {/* <Route path="historical" element={<Historical />} /> */}
+          <Route path="historical" element={<Historic />} />
           <Route path="forex-news" element={<ForexNews />} />
           <Route path="*" element={<NoPage />} />
         </Routes>

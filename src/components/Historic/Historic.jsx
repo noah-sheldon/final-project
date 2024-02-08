@@ -11,8 +11,9 @@ import {
 function Historic() {
   const [currencyData, setCurrencyData] = useState(null);
   useEffect(() => {
-    const apiKey = "NPflPcQAwrwffLs9iVzHdDWyrqSSRNxm";
-    const url = `https://financialmodelingprep.com/api/v3/historical-price-full/EURUSD?apikey=${apiKey}`;
+    const url = `https://financialmodelingprep.com/api/v3/historical-price-full/EURUSD?apikey=${
+      import.meta.env.VITE_FIN_APP_API_KEY
+    }`;
 
     fetch(url)
       .then((response) => response.json())

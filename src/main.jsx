@@ -5,7 +5,6 @@ import "./index.css";
 import { registerLicense } from "@syncfusion/ej2-base";
 
 registerLicense(import.meta.env.VITE_SYNCFUSION_API);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />

@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import EjectIcon from '@mui/icons-material/Eject';
+import EjectIcon from "@mui/icons-material/Eject";
 import { Link } from "react-router-dom";
 
 const pages = ["Currency Converter", "Historical Charts", "Forex News"];

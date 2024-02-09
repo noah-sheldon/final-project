@@ -1,0 +1,29 @@
+.currency-converter-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.currency-input-container {
+  margin: 20px 0;
+}
+
+.currency-input-container input,
+.currency-input-container select {
+  margin: 0 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.currency-input-container input[type="number"] {
+  width: 70px;
+}
+
+.currency-input-container input[type="text"] {
+  width: 100px;
+  background-color: #f0f0f0;
+}

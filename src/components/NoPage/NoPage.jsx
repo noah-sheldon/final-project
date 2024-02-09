@@ -20,7 +20,9 @@ export default function NoPage() {
             <Typography variant="h6">
               The page you’re looking for doesn’t exist.
             </Typography>
-            <Button variant="contained" to="/" component={Link}>Back Home</Button>
+            <Button variant="contained" to="/" component={Link}>
+              Back Home
+            </Button>
           </Grid>
           <Grid xs={6}>
             <img src="/404.svg" alt="" width={500} height={250} />

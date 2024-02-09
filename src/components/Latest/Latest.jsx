@@ -1,16 +1,18 @@
-import './Latest.css'
-import React, { useState, useEffect } from 'react';
+import "./Latest.css";
+import React, { useState, useEffect } from "react";
 
 const Latest = () => {
   const [amount, setAmount] = useState(1);
-  const [fromCurrency, setFromCurrency] = useState('EUR');
-  const [toCurrency, setToCurrency] = useState('USD');
+  const [fromCurrency, setFromCurrency] = useState("EUR");
+  const [toCurrency, setToCurrency] = useState("USD");
   const [exchangeRate, setExchangeRate] = useState(null);
 
-  const apiKey = 'fca_live_tL8hRYWmucQJ0vkodjxyS90TOBweprVAZb51VwFB'; 
+  const apiKey = import.meta.env.VITE_FREE_CURR_API;
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
-      fetch(`https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&base_currency=${fromCurrency}`)
+      fetch(
+        `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&base_currency=${fromCurrency}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setExchangeRate(data.data[toCurrency]);
@@ -113,4 +115,3 @@ const Latest = () => {
 };
 
 export default Latest;
-

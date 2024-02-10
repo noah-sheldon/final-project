@@ -14,10 +14,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout />} style={{height: '100%'}}>
             <Route path="/" element={<Home />} />
-            <Route path="latest" element={<Latest />} />
-            <Route path="historic" element={<Historic />} />
+            <Route path="currency-converter" element={<Latest />} />
+            <Route path="historical-charts" element={<Historic />} />
             <Route path="forex-news" element={<ForexNews />} />
             <Route path="*" element={<NoPage />} />
           </Route>

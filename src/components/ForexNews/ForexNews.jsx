@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import currencies from "../../data/currencies";
+import currencies from "../../data/currencies"; // Import currency options
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const ForexNews = () => {
-  const apiKey = import.meta.env.VITE_NEWS_APP_API_KEY;
+  const apiKey = "80db4a5790bef82dcaa9bc8d7de2cd7c"; // GNews API key (please modify this ,put it in the .env - I couldnt locate it
   const [news, setNews] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredNews, setFilteredNews] = useState([]);
@@ -14,11 +16,11 @@ const ForexNews = () => {
   useEffect(() => {
     const fetchForexNews = async () => {
       try {
-        let apiUrl = `https://newsapi.org/v2/everything?q=forex ${selectedCurrency}`;
+        let apiUrl = `https://gnews.io/api/v4/search?q=forex+${selectedCurrency}&token=${apiKey}`;
         if (startDate && endDate) {
           apiUrl += `&from=${startDate}&to=${endDate}`;
         }
-        apiUrl += `&language=${selectedLanguage}&sortBy=publishedAt&apiKey=${apiKey}`;
+        apiUrl += `&lang=${selectedLanguage}`;
 
         const response = await fetch(apiUrl);
         if (response.ok) {
@@ -123,6 +125,7 @@ const ForexNews = () => {
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{article.title}</h5>
+                <h6 className="card-title">{article.publishedAt.slice(0, 10)}</h6>
                 <p className="card-text">{article.description}</p>
                 <a
                   href={article.url}

@@ -15,7 +15,7 @@ const Home = () => {
         backgroundImage: 'url("/bg-img.jpg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
-        minHeight: "100vh",
+        minHeight: "624px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -25,24 +25,42 @@ const Home = () => {
       <Container>
         <Card style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
           <CardContent>
-            <Typography variant="h2" gutterBottom>
-              Currency Dashboard
+            <Typography
+              variant="h2"
+              elevation={2}
+              gutterBottom
+              sx={{ color: "#4591A7" }}
+            >
+              <b>fx - Change</b>
             </Typography>
+            <Typography variant="h5" sx={{ marginBottom: "30px" }}>
+              Stay informed about currency exchange rates, historical trends,
+              and the latest forex news.
+            </Typography>
+
             <Button
               component={Link}
               to="/currency-converter"
               variant="contained"
               color="primary"
-              style={{ marginRight: 10 }}
+              style={{
+                marginRight: 10,
+                marginBottom: 10,
+                backgroundColor: "#8C5D42",
+              }}
             >
               Currency Converter
             </Button>
             <Button
               component={Link}
-              to="/historical"
+              to="/historical-charts"
               variant="contained"
               color="primary"
-              style={{ marginRight: 10 }}
+              style={{
+                marginRight: 10,
+                marginBottom: 10,
+                backgroundColor: "#8C5D42",
+              }}
             >
               Historical Data
             </Button>
@@ -51,6 +69,11 @@ const Home = () => {
               to="/forex-news"
               variant="contained"
               color="primary"
+              style={{
+                marginRight: 10,
+                marginBottom: 10,
+                backgroundColor: "#8C5D42",
+              }}
             >
               Forex News
             </Button>

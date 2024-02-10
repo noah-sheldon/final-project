@@ -16,8 +16,6 @@ import EjectIcon from "@mui/icons-material/Eject";
 import { Link } from "react-router-dom";
 
 const pages = ["Currency Converter", "Historical Charts", "Forex News"];
-const route = ["Currency Converter", "Historical Charts", "Forex News"];
-// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,7 +37,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ background: "#4591A7" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <EjectIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -93,7 +91,7 @@ function Navbar() {
               <MenuItem
                 key={pages[0]}
                 onClick={handleCloseNavMenu}
-                to="/latest"
+                to="/currency-converter"
                 component={Link}
               >
                 <Typography textAlign="center">{pages[0]}</Typography>
@@ -101,7 +99,7 @@ function Navbar() {
               <MenuItem
                 key={pages[1]}
                 onClick={handleCloseNavMenu}
-                to="/historic"
+                to="/historical-charts"
                 component={Link}
               >
                 <Typography textAlign="center">{pages[1]}</Typography>
@@ -121,7 +119,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -139,7 +137,7 @@ function Navbar() {
             <Button
               key={pages[0]}
               component={Link}
-              to="/latest"
+              to="/currency-converter"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
@@ -148,7 +146,7 @@ function Navbar() {
             <Button
               key={pages[1]}
               component={Link}
-              to="/historic"
+              to="/historical-charts"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >

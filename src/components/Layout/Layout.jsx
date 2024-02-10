@@ -8,12 +8,10 @@ import { useEffect, useState } from "react";
 
 export const Layout = () => {
   const location = useLocation();
-  const [footerShow, setfooterShow] = useState(
-    location.pathname === "/" ? false : true
-  );
+  const [footerShow, setfooterShow] = useState(location.pathname !== "/");
 
   useEffect(() => {
-    setfooterShow(location.pathname === "/" ? false : true);
+    setfooterShow(location.pathname !== "/");
   }, [location.pathname]);
 
   return (

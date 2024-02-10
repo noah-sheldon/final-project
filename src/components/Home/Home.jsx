@@ -15,7 +15,7 @@ const Home = () => {
         backgroundImage: 'url("/bg-img.jpg")',
         backgroundSize: "cover",
         backgroundPosition: "center",
-        minHeight: "624px",
+        minHeight: "93vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

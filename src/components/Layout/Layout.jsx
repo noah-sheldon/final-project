@@ -3,8 +3,19 @@ import { Outlet } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const Layout = () => {
+  const location = useLocation();
+  const [footerShow, setfooterShow] = useState(
+    location.pathname === "/" ? false : true
+  );
+
+  useEffect(() => {
+    setfooterShow(location.pathname === "/" ? false : true);
+  }, [location.pathname]);
+
   return (
     <>
       <Paper sx={{ width: "100%", height: "auto", display: "block" }}>
@@ -14,9 +25,7 @@ export const Layout = () => {
         <Box sx={{ width: "100%" }}>
           <Outlet />
         </Box>
-        <Box sx={{ width: "100%" }}>
-          <Footer />
-        </Box>
+        <Box sx={{ width: "100%" }}>{footerShow && <Footer />}</Box>
       </Paper>
     </>
   );

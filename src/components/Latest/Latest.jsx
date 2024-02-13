@@ -20,7 +20,7 @@ import axios from "axios";
 
 const Latest = () => {
   const [amount, setAmount] = useState(1);
-  const [fromCurrency, setFromCurrency] = useState("EUR");
+  const [fromCurrency, setFromCurrency] = useState("GBP");
   const [toCurrency, setToCurrency] = useState("USD");
   const [conversionRates, setConversionRates] = useState({});
   const [resultFromTo, setResultFromTo] = useState(null);

@@ -1,7 +1,6 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import currencies from "../../data/currencies";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import {
   MenuItem,
   FormControl,
@@ -12,11 +11,12 @@ import {
   Typography,
   CardActions,
   Grid,
-  TextField,
 } from "@mui/material";
-import AdapterDateFns from "@mui/material/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
 const ForexNews = () => {
   const [selectedCurrency, setSelectedCurrency] = useState("");
@@ -25,9 +25,15 @@ const ForexNews = () => {
   const [toDate, setToDate] = useState(null);
   const [newsData, setNewsData] = useState([]);
 
+  const formatDate = (date) => {
+    return dayjs(date).format("YYYY-MM-DDTHH:mm:ss[Z]");
+  };
+
   const handleShowNews = async () => {
     const apiKey = import.meta.env.VITE_GNEWS_API_KEY;
-    const apiUrl = `https://gnews.io/api/v4/search?q=forex+${selectedCurrency}&token=${apiKey}&lang=${selectedLanguage}&from=${fromDate}&to=${toDate}`;
+    const formattedFromDate = fromDate ? formatDate(fromDate) : "";
+    const formattedToDate = toDate ? formatDate(toDate) : "";
+    const apiUrl = `https://gnews.io/api/v4/search?q=forex+${selectedCurrency}&token=${apiKey}&lang=${selectedLanguage}&from=${formattedFromDate}&to=${formattedToDate}`;
 
     try {
       // Fetch data from the API
@@ -40,7 +46,7 @@ const ForexNews = () => {
   };
 
   return (
-    <div className="container mt-3">
+    <div className="container mt-5">
       <FormControl>
         <Select
           value={selectedCurrency}
@@ -77,40 +83,47 @@ const ForexNews = () => {
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="From Date"
-              value={fromDate}
-              onChange={(newValue) => setFromDate(newValue)}
-              renderInput={(params) => <TextField {...params} fullWidth />}
-            />
-          </LocalizationProvider>
-        </Grid>
-
-        <Grid item xs={6}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="To Date"
-              value={toDate}
-              onChange={(newValue) => setToDate(newValue)}
-              renderInput={(params) => <TextField {...params} fullWidth />}
-            />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker", "DatePicker"]}>
+              <DatePicker
+                label="From Date"s
+                value={fromDate}
+                onChange={(newValue) => setFromDate(newValue)}
+              />
+              <DatePicker
+                label="To Date"
+                value={toDate}
+                onChange={(newValue) => setToDate(newValue)}
+              />
+            </DemoContainer>
           </LocalizationProvider>
         </Grid>
       </Grid>
 
-      <Button variant="contained" color="primary" onClick={handleShowNews}>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ backgroundColor: "#4591A7" }}
+        onClick={handleShowNews}
+        className="mt-3"
+      >
         Show News
       </Button>
 
-      <div className="row mt-3">
+      <div className="row mt-3 mb-5">
         {newsData.map((article, index) => (
-          <div key={index} className="col-md-4">
+          <div key={index} className="col-md-4 mb-4">
             <Card>
               <img src={article.image} className="card-img-top" alt="News" />
               <CardContent>
                 <Typography variant="h6">{article.title}</Typography>
                 <Typography variant="body2">{article.description}</Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Source: {article.source.name}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Published at: {formatDate(article.publishedAt)}
+                </Typography>
               </CardContent>
               <CardActions>
                 <Button

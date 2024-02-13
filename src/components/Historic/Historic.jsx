@@ -33,7 +33,7 @@ import {
 
 const Historic = () => {
   const [data, setData] = useState([]);
-  const [inputCurrency, setInputCurrency] = useState("EUR");
+  const [inputCurrency, setInputCurrency] = useState("GBP");
   const [outputCurrency, setOutputCurrency] = useState("USD");
   const [timeframe, setTimeframe] = useState("30min");
   const [page, setPage] = useState(0);
@@ -219,7 +219,7 @@ const Historic = () => {
           </Button>
           {data.length ? (
             <div>
-              <ResponsiveContainer>
+              <ResponsiveContainer width="100%" height={400}>
                 <LineChart
                   width={800}
                   height={400}
@@ -238,20 +238,21 @@ const Historic = () => {
                   <Line type="monotone" dataKey="high" stroke="#ff0000" />
                 </LineChart>
               </ResponsiveContainer>
-
-              <BarChart
-                width={800}
-                height={200}
-                data={data}
-                style={{ marginTop: "30px" }}
-              >
-                <XAxis dataKey="date" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="volume" fill="#8884d8" />
-              </BarChart>
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart
+                  width={800}
+                  height={200}
+                  data={data}
+                  style={{ marginTop: "30px" }}
+                >
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="volume" fill="#8884d8" />
+                </BarChart>
+              </ResponsiveContainer>
 
               <TableContainer component={Paper}>
                 <Table>

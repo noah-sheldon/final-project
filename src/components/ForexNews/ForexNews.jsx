@@ -29,6 +29,10 @@ const ForexNews = () => {
     return dayjs(date).format("YYYY-MM-DDTHH:mm:ss[Z]");
   };
 
+  const formatDateSimple = (date) => {
+    return dayjs(date).format("YYYY-MM-DD");
+  };
+
   const handleShowNews = async () => {
     const apiKey = import.meta.env.VITE_GNEWS_API_KEY;
     const formattedFromDate = fromDate ? formatDate(fromDate) : "";
@@ -86,7 +90,7 @@ const ForexNews = () => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker", "DatePicker"]}>
               <DatePicker
-                label="From Date"s
+                label="From Date"
                 value={fromDate}
                 onChange={(newValue) => setFromDate(newValue)}
               />
@@ -122,7 +126,7 @@ const ForexNews = () => {
                   Source: {article.source.name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Published at: {formatDate(article.publishedAt)}
+                  Published at: {formatDateSimple(article.publishedAt)}
                 </Typography>
               </CardContent>
               <CardActions>

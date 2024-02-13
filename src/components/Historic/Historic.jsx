@@ -84,7 +84,7 @@ const Historic = () => {
               id="input-currency"
               value={inputCurrency}
               onChange={(e) => setInputCurrency(e.target.value)}
-              style={{ marginRight: "20px", width: "200px" }}
+              style={{ marginTop: "20px",marginRight: "10px",  marginBottom: "20px", width: "200px", height: "50px" }}
             >
               <MenuItem value="USD">USD</MenuItem>
               <MenuItem value="EUR">EUR</MenuItem>
@@ -123,13 +123,13 @@ const Historic = () => {
           </FormControl>
 
           <FormControl>
-            <InputLabel id="output-currency-label">Currency 2</InputLabel>
+            <InputLabel id="output-currency-label" >Currency 2</InputLabel>
             <Select
               labelId="output-currency-label"
               id="output-currency"
               value={outputCurrency}
               onChange={(e) => setOutputCurrency(e.target.value)}
-              style={{ marginRight: "20px", width: "200px" }}
+              style={{ marginTop: "20px",marginRight: "10px",  marginBottom: "20px", width: "200px", height: "50px" }}
             >
               <MenuItem value="USD">USD</MenuItem>
               <MenuItem value="EUR">EUR</MenuItem>
@@ -168,13 +168,13 @@ const Historic = () => {
           </FormControl>
 
           <FormControl>
-            <InputLabel id="timeframe-label">Timeframe</InputLabel>
+            <InputLabel id="timeframe-label" >Timeframe</InputLabel>
             <Select
               labelId="timeframe-label"
               id="timeframe"
               value={timeframe}
               onChange={(e) => setTimeframe(e.target.value)}
-              style={{ marginRight: "20px", width: "200px" }}
+              style={{ marginTop: "20px",marginRight: "10px",  marginBottom: "5px", width: "200px", height: "50px" }}
             >
               <MenuItem value="1min">1 Minute</MenuItem>
               <MenuItem value="5min">5 Minutes</MenuItem>
@@ -185,7 +185,7 @@ const Historic = () => {
             </Select>
           </FormControl>
 
-          <Button variant="contained" color="info" onClick={fetchData}>
+          <Button variant="contained" color="info" style={{ marginTop: "20px",marginRight: "10px", width: "200px", height: "50px" }} onClick={fetchData}>
             Submit
           </Button>
           {data.length ? (

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {
+  ResponsiveContainer,
   LineChart,
   Line,
   XAxis,
@@ -84,7 +85,13 @@ const Historic = () => {
               id="input-currency"
               value={inputCurrency}
               onChange={(e) => setInputCurrency(e.target.value)}
-              style={{ marginTop: "20px",marginRight: "10px",  marginBottom: "20px", width: "200px", height: "50px" }}
+              style={{
+                marginTop: "20px",
+                marginRight: "10px",
+                marginBottom: "20px",
+                width: "200px",
+                height: "50px",
+              }}
             >
               <MenuItem value="USD">USD</MenuItem>
               <MenuItem value="EUR">EUR</MenuItem>
@@ -123,13 +130,19 @@ const Historic = () => {
           </FormControl>
 
           <FormControl>
-            <InputLabel id="output-currency-label" >Currency 2</InputLabel>
+            <InputLabel id="output-currency-label">Currency 2</InputLabel>
             <Select
               labelId="output-currency-label"
               id="output-currency"
               value={outputCurrency}
               onChange={(e) => setOutputCurrency(e.target.value)}
-              style={{ marginTop: "20px",marginRight: "10px",  marginBottom: "20px", width: "200px", height: "50px" }}
+              style={{
+                marginTop: "20px",
+                marginRight: "10px",
+                marginBottom: "20px",
+                width: "200px",
+                height: "50px",
+              }}
             >
               <MenuItem value="USD">USD</MenuItem>
               <MenuItem value="EUR">EUR</MenuItem>
@@ -168,13 +181,19 @@ const Historic = () => {
           </FormControl>
 
           <FormControl>
-            <InputLabel id="timeframe-label" >Timeframe</InputLabel>
+            <InputLabel id="timeframe-label">Timeframe</InputLabel>
             <Select
               labelId="timeframe-label"
               id="timeframe"
               value={timeframe}
               onChange={(e) => setTimeframe(e.target.value)}
-              style={{ marginTop: "20px",marginRight: "10px",  marginBottom: "5px", width: "200px", height: "50px" }}
+              style={{
+                marginTop: "20px",
+                marginRight: "10px",
+                marginBottom: "5px",
+                width: "200px",
+                height: "50px",
+              }}
             >
               <MenuItem value="1min">1 Minute</MenuItem>
               <MenuItem value="5min">5 Minutes</MenuItem>
@@ -185,28 +204,40 @@ const Historic = () => {
             </Select>
           </FormControl>
 
-          <Button variant="contained" color="info" style={{ marginTop: "20px",marginRight: "10px", width: "200px", height: "50px" }} onClick={fetchData}>
+          <Button
+            variant="contained"
+            color="info"
+            style={{
+              marginTop: "20px",
+              marginRight: "10px",
+              width: "200px",
+              height: "50px",
+            }}
+            onClick={fetchData}
+          >
             Submit
           </Button>
           {data.length ? (
             <div>
-              <LineChart
-                width={800}
-                height={400}
-                data={data}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                style={{ marginTop: "30px" }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis type="number" domain={["dataMin", "dataMax"]} />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="open" stroke="#8884d8" />
-                <Line type="monotone" dataKey="close" stroke="#82ca9d" />
-                <Line type="monotone" dataKey="low" stroke="#ff7f0e" />
-                <Line type="monotone" dataKey="high" stroke="#ff0000" />
-              </LineChart>
+              <ResponsiveContainer>
+                <LineChart
+                  width={800}
+                  height={400}
+                  data={data}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                  style={{ marginTop: "30px" }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis type="number" domain={["dataMin", "dataMax"]} />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="open" stroke="#8884d8" />
+                  <Line type="monotone" dataKey="close" stroke="#82ca9d" />
+                  <Line type="monotone" dataKey="low" stroke="#ff7f0e" />
+                  <Line type="monotone" dataKey="high" stroke="#ff0000" />
+                </LineChart>
+              </ResponsiveContainer>
 
               <BarChart
                 width={800}

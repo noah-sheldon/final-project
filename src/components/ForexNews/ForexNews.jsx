@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import currencies from "../../data/currencies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -56,7 +56,7 @@ const ForexNews = () => {
           value={selectedCurrency}
           onChange={(e) => setSelectedCurrency(e.target.value)}
           displayEmpty
-          sx={{ marginRight: "20px", marginBottom: "30px" }}
+          sx={{ marginRight: "20px", marginBottom: "30px", width: "200px" }}
         >
           <MenuItem value="" disabled>
             Select Currency
@@ -74,14 +74,18 @@ const ForexNews = () => {
           value={selectedLanguage}
           onChange={(e) => setSelectedLanguage(e.target.value)}
           displayEmpty
-          sx={{ marginRight: "20px", marginBottom: "30px" }}
+          sx={{ marginRight: "20px", marginBottom: "30px", width: "200px" }}
         >
           <MenuItem value="" disabled>
             Select Language
           </MenuItem>
-          <MenuItem value="fr">French</MenuItem>
+          <MenuItem disabled value="fr">
+            French
+          </MenuItem>
           <MenuItem value="en">English</MenuItem>
-          <MenuItem value="de">German</MenuItem>
+          <MenuItem disabled value="de">
+            German
+          </MenuItem>
         </Select>
       </FormControl>
 
@@ -93,11 +97,15 @@ const ForexNews = () => {
                 label="From Date"
                 value={fromDate}
                 onChange={(newValue) => setFromDate(newValue)}
+                minDate={dayjs("2019-01-01")}
+                maxDate={dayjs()}
               />
               <DatePicker
                 label="To Date"
                 value={toDate}
                 onChange={(newValue) => setToDate(newValue)}
+                minDate={dayjs("2019-01-01")}
+                maxDate={dayjs()}
               />
             </DemoContainer>
           </LocalizationProvider>

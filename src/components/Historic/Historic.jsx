@@ -74,7 +74,6 @@ const Historic = () => {
           padding: "20px",
           marginTop: "40px",
           marginBottom: "40px",
-          // backgroundColor: "#C3CDCC",
         }}
       >
         <Box>
@@ -288,6 +287,7 @@ const Historic = () => {
                   </TableBody>
                 </Table>
                 <TablePagination
+                  rowsPerPageOptions={[5, 10, 20]}
                   component="div"
                   count={data.length}
                   page={page}

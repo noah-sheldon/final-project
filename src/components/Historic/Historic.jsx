@@ -29,6 +29,9 @@ import {
   Container,
   Typography,
   Box,
+  Tabs,
+  Tab,
+  AppBar,
 } from "@mui/material";
 
 const Historic = () => {
@@ -38,6 +41,11 @@ const Historic = () => {
   const [timeframe, setTimeframe] = useState("30min");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const fetchData = async () => {
     try {
@@ -61,8 +69,6 @@ const Historic = () => {
   };
 
   useEffect(() => {
-    console.log(rowsPerPage);
-    console.log(page);
     setPage(page);
     setRowsPerPage(rowsPerPage);
   }, [page, rowsPerPage]);
@@ -211,6 +217,7 @@ const Historic = () => {
               marginRight: "10px",
               width: "200px",
               height: "50px",
+              marginBottom: "50px",
             }}
             onClick={fetchData}
           >
@@ -218,84 +225,98 @@ const Historic = () => {
           </Button>
           {data.length ? (
             <div>
-              <ResponsiveContainer width="100%" height={400}>
-                <LineChart
-                  width={800}
-                  height={400}
-                  data={data}
-                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                  style={{ marginTop: "30px" }}
+              <AppBar position="static">
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  textColor="white"
+                  indicatorColor="secondary"
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis type="number" domain={["dataMin", "dataMax"]} />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="open" stroke="#8884d8" />
-                  <Line type="monotone" dataKey="close" stroke="#82ca9d" />
-                  <Line type="monotone" dataKey="low" stroke="#ff7f0e" />
-                  <Line type="monotone" dataKey="high" stroke="#ff0000" />
-                </LineChart>
-              </ResponsiveContainer>
-              <ResponsiveContainer width="100%" height={400}>
-                <BarChart
-                  width={800}
-                  height={200}
-                  data={data}
-                  style={{ marginTop: "30px" }}
-                >
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="volume" fill="#8884d8" />
-                </BarChart>
-              </ResponsiveContainer>
-
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Date</TableCell>
-                      <TableCell align="right">Open</TableCell>
-                      <TableCell align="right">Close</TableCell>
-                      <TableCell align="right">Low</TableCell>
-                      <TableCell align="right">High</TableCell>
-                      <TableCell align="right">Volume</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {(rowsPerPage > 0
-                      ? data.slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                      : data
-                    ).map((row) => (
-                      <TableRow key={row.date}>
-                        <TableCell component="th" scope="row">
-                          {row.date}
-                        </TableCell>
-                        <TableCell align="right">{row.open}</TableCell>
-                        <TableCell align="right">{row.close}</TableCell>
-                        <TableCell align="right">{row.low}</TableCell>
-                        <TableCell align="right">{row.high}</TableCell>
-                        <TableCell align="right">{row.volume}</TableCell>
+                  <Tab label="Graph View" sx={{ color: "primary" }} />
+                  <Tab label="Table View" sx={{ color: "primary" }} />
+                </Tabs>
+              </AppBar>
+              <TabPanel value={value} index={0}>
+                <ResponsiveContainer width="100%" height={400}>
+                  <LineChart
+                    width={800}
+                    height={400}
+                    data={data}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                    style={{ marginTop: "30px" }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis type="number" domain={["dataMin", "dataMax"]} />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="open" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="close" stroke="#82ca9d" />
+                    <Line type="monotone" dataKey="low" stroke="#ff7f0e" />
+                    <Line type="monotone" dataKey="high" stroke="#ff0000" />
+                  </LineChart>
+                </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height={400}>
+                  <BarChart
+                    width={800}
+                    height={200}
+                    data={data}
+                    style={{ marginTop: "30px" }}
+                  >
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="volume" fill="#8884d8" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Date</TableCell>
+                        <TableCell align="right">Open</TableCell>
+                        <TableCell align="right">Close</TableCell>
+                        <TableCell align="right">Low</TableCell>
+                        <TableCell align="right">High</TableCell>
+                        <TableCell align="right">Volume</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {(rowsPerPage > 0
+                        ? data.slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
+                        : data
+                      ).map((row) => (
+                        <TableRow key={row.date}>
+                          <TableCell component="th" scope="row">
+                            {row.date}
+                          </TableCell>
+                          <TableCell align="right">{row.open}</TableCell>
+                          <TableCell align="right">{row.close}</TableCell>
+                          <TableCell align="right">{row.low}</TableCell>
+                          <TableCell align="right">{row.high}</TableCell>
+                          <TableCell align="right">{row.volume}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
                 <TablePagination
-                  rowsPerPageOptions={[5, 10, 20]}
+                  rowsPerPageOptions={[5, 10, 25]}
                   component="div"
                   count={data.length}
-                  page={page}
-                  onChangePage={handleChangePage}
                   rowsPerPage={rowsPerPage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
                 />
-              </TableContainer>
+              </TabPanel>
             </div>
           ) : (
             <div>
@@ -310,5 +331,24 @@ const Historic = () => {
     </Container>
   );
 };
+
+function TabPanel(props) {
+  const { children, value, index } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
 
 export default Historic;

@@ -34,14 +34,14 @@ To initiate this project, follow these steps:
 
 The landing page for the application looks like the following on a standard HD screen 1920*1080 display.
 
-<!-- ![alt text](./public/screenshot1.png) -->
+<!-- ![alt text](./public/landingpage.png) -->
 
 ## Screenshots
 
-![Homepage Screenshot](https://github.com/noah-sheldon/fx-Change/public/)
-![Recipe View Screenshot](https://github.com/noah-sheldon/fx-Change/public/)
-![Nutrition View Screenshot](https://github.com/noah-sheldon/fx-Change/public/)
-
+![Landing Page](https://github.com/noah-sheldon/fxChange/assets/36855642/983589d2-101e-4652-9d0e-cb1ad6ba66b4)
+![Currency Converter](https://github.com/noah-sheldon/fxChange/assets/36855642/32a96894-b839-4705-bebf-3fca8d1adec9)
+![Historic Charts Screenshot](https://github.com/noah-sheldon/fxChange/assets/36855642/c85e6666-8b5e-4282-b991-172a43a221ba)
+![Forex News Screenshot](https://github.com/noah-sheldon/fxChange/assets/36855642/0a1a49d8-ef01-4f0d-93a0-611989cda52c)
 
 ## Deployed Application
 

@@ -17,7 +17,7 @@ export const Layout = () => {
   return (
     <>
       <Paper sx={{ width: "100%", height: "auto", display: "block" }}>
-        <Box sx={{ width: "100%", height: "7vh" }}>
+        <Box sx={{ width: "100%", height: "auto" }}>
           <Navbar />
         </Box>
         <Box sx={{ width: "100%" }}>

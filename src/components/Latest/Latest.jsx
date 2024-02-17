@@ -178,7 +178,7 @@ const Latest = () => {
             <FormControl
               variant="outlined"
               fullWidth
-              style={{ marginBottom: "20px" }}
+              style={{ marginBottom: "10px" }}
             >
               <InputLabel id="to-currency-label">To Currency</InputLabel>
               <Select
